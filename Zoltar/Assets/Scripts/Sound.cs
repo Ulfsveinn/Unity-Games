@@ -5,6 +5,8 @@ public class Sound {
 
 	public string name;
 
+	public string text;
+
 	public AudioClip clip;
 
 	[Range(0f, 1f)]

@@ -947,36 +947,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: a0
+    text: Acorde cedo e durma tarde para prosperar e ter uma vida duradoura
     clip: {fileID: 8300000, guid: 8ef29a7c578ee374bbd1e73b90a4ef0f, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: a1
+    text: "Voc\xEA encontrar\xE1 o amor da sua vida em algum dia no futuro"
     clip: {fileID: 8300000, guid: 0d19823ebec4c7f41846b31e2df322ff, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: a2
+    text: " Ei. Pare de reclamar, voc\xEA s\xF3 tem visto o lado escuro da vida.
+      Lembre-se que para existir a escurid\xE3o existe a claridade"
     clip: {fileID: 8300000, guid: 491cc86a24cbd98428ce16e09e9e74ec, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: a3
+    text: "Pare de terceirizar os seus problemas, comece assumindo os seus erros
+      para que o pr\xF3ximo passo seja possitivo."
     clip: {fileID: 8300000, guid: e8bdf6aab4628fb4d846c09376d0b434, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: a4
+    text: "Evite passar na frente de um gato preto para n\xE3o ter azar na sua vida."
     clip: {fileID: 8300000, guid: 46b41adf1ce38e44998287205f542825, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   player: {fileID: 1299254105}
+  text: {fileID: 2124319832}
 --- !u!4 &1524352832
 Transform:
   m_ObjectHideFlags: 0
@@ -1169,7 +1177,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -92, y: 21}
+  m_AnchoredPosition: {x: -92, y: 66}
   m_SizeDelta: {x: 659.22, y: 124.4484}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2124319832

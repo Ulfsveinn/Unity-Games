@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.Audio;
+using TMPro;
+using Unity.VisualScripting;
 
 public class AudioManager : MonoBehaviour {
 
@@ -8,8 +10,11 @@ public class AudioManager : MonoBehaviour {
 
 	public Sound[] sounds;
 	public GameObject player;
+	public TextMeshProUGUI text;
+    static Boolean clicado = false;
 
-	void Start ()
+
+    void Start()
 	{
 		if (instance != null)
 		{
@@ -30,21 +35,31 @@ public class AudioManager : MonoBehaviour {
 		}
 	}
 
-	public void Play (string sound)
+	public void Play(string sound)
 	{
-			Sound s = Array.Find(sounds, item => item.name == sound);
-			s.source.Play();
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		s.source.Play();
 	}
 
 	public void StartSpeak()
 	{
-        player.GetComponent<Animator>().enabled = true;
-        int p= UnityEngine.Random.Range(0, sounds.Length);
-		sounds[p].source.Play();
-		Invoke("StopSpeak",sounds[p].source.clip.length);
+		if (!clicado || Input.GetMouseButtonDown(0))
+		{
+            clicado = true;
+            player.GetComponent<Animator>().enabled = true;
+			int p = UnityEngine.Random.Range(0, sounds.Length);
+			sounds[p].source.Play();
+			text.text = sounds[p].text;
+            Invoke("StopSpeak", sounds[p].source.clip.length);
+            GetComponent<Collider2D>().enabled = false;
+        }
 	}
-	public void StopSpeak()
-	{
+		public void StopSpeak()
+		{
+        clicado = false;
         player.GetComponent<Animator>().enabled = false;
+        GetComponent<Collider2D>().enabled = true;
     }
 }
+
+
