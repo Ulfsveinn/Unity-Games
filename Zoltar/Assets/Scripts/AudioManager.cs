@@ -31,10 +31,14 @@ public class AudioManager : MonoBehaviour {
 
 	public void Play (string sound)
 	{
-		//if (!GameManager.mute) { 
-		//	Sound s = Array.Find(sounds, item => item.name == sound);
-		//	s.source.Play();
-  //      }
-    }
+			Sound s = Array.Find(sounds, item => item.name == sound);
+			s.source.Play();
+	}
+
+	public void Falar()
+	{
+		int p= UnityEngine.Random.Range(0, sounds.Length);
+		sounds[p].source.Play();
+	}
 
 }
