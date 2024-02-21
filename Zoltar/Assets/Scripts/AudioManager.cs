@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour {
 	public static AudioManager instance;
 
 	public Sound[] sounds;
+	public GameObject player;
 
 	void Start ()
 	{
@@ -35,10 +36,15 @@ public class AudioManager : MonoBehaviour {
 			s.source.Play();
 	}
 
-	public void Falar()
+	public void StartSpeak()
 	{
-		int p= UnityEngine.Random.Range(0, sounds.Length);
+        player.GetComponent<Animator>().enabled = true;
+        int p= UnityEngine.Random.Range(0, sounds.Length);
 		sounds[p].source.Play();
+		Invoke("StopSpeak",sounds[p].source.clip.length);
 	}
-
+	public void StopSpeak()
+	{
+        player.GetComponent<Animator>().enabled = false;
+    }
 }

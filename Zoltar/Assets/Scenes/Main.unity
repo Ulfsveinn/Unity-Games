@@ -658,7 +658,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1524352831}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
-        m_MethodName: Falar
+        m_MethodName: StartSpeak
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -836,7 +836,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299254105}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b8c4f6705b72a2844936f0e8982a960b, type: 2}
   m_CullingMode: 0
@@ -976,6 +976,7 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  player: {fileID: 1299254105}
 --- !u!4 &1524352832
 Transform:
   m_ObjectHideFlags: 0
