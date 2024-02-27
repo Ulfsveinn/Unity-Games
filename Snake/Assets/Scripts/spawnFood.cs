@@ -14,8 +14,7 @@ public class spawnFood : MonoBehaviour
     
     void Start()
     {
-        InvokeRepeating("Spawn", 3f, 4f);//ira chamar a função spawn apos 3s e vai se repitir apos 4s
-       
+        InvokeRepeating("Spawn", 3f, 4f);//ira chamar a fun��o spawn apos 3s e vai se repitir apos 4s
     }
 
     // Update is called once per frame
@@ -30,7 +29,5 @@ public class spawnFood : MonoBehaviour
         int y = (int)Random.Range(BorderTop.position.y, BorderBot.position.y);//cria um numero Random entre as duas bordas na vertical(y)
         Vector2 spawnposition = new Vector2(x, y);
         GameObject newFood=Instantiate(food, spawnposition, Quaternion.identity);
-        //Destroi o objeto depois de 5s
-        Destroy(newFood, 5f);
     }
 }
