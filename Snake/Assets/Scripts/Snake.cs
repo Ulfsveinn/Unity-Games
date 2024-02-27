@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
+    spawnFood spawnfood;
+    //Comeu ou n
+    bool eat = false;
     //Direção que a cobra vai se movimentar
     Vector2 dir = Vector2.right;
+    //Tail Prefab
+    public GameObject TailPrefab;
+    //Tail
+    List<Transform> tail= new List<Transform>();
     void Start()
     {
-        InvokeRepeating("Move",0.3f,0.3f); 
+        spawnfood = FindAnyObjectByType<spawnFood>();
+        InvokeRepeating("Move",1f,1f); 
     }
 
     // Update is called once per frame
@@ -34,4 +42,22 @@ public class Snake : MonoBehaviour
     {
         transform.Translate(dir);
     }
+    private void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.name.StartsWith("food"))
+        {
+            eat=true;
+            Destroy(coll.gameObject);
+            if(eat)
+            {
+                spawnfood.comida();
+            }
+        }
+        else
+        {
+            //dead, fim de jogo
+            Debug.Log("DEAD!");
+        }
+    }
+
 }
