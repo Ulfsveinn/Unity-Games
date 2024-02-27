@@ -16,7 +16,7 @@ public class Snake : MonoBehaviour
     void Start()
     {
         spawnfood = FindAnyObjectByType<spawnFood>();
-        InvokeRepeating("Move",1f,1f); 
+        InvokeRepeating("Move",0.3f,0.3f); 
     }
 
     // Update is called once per frame
@@ -40,7 +40,24 @@ public class Snake : MonoBehaviour
     }
     void Move()
     {
+        Vector2 v = transform.position;//salvando a coordenada atual
+        //movimentei a head da snake
         transform.Translate(dir);
+        //tail - cauda
+        if (eat)
+        {
+            //cria a cauda
+            GameObject g = (GameObject)Instantiate(TailPrefab, v, Quaternion.identity);
+            //defino o elemento como inicio da cauda
+            tail.Insert(0,g.transform);  
+            eat = false;
+        }else if(tail.Count > 0)
+        {
+            //muda a coordenada de tela do elemento
+            tail[tail.Count - 1].position = v;
+            tail.Insert(0, tail[tail.Count - 1]);
+            tail.RemoveAt(tail.Count - 1);
+        }
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
