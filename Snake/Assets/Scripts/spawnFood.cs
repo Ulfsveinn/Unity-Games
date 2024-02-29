@@ -11,36 +11,31 @@ public class spawnFood : MonoBehaviour
     public Transform BorderBot;
     //Prefab da comida
     public GameObject food;
-    bool temcomida = false;
     GameObject atualcomida;
+    
     void Start()
     {
          Spawn();
     }
-
     // Update is called once per frame
     void Update()
     {
     }
     void Spawn()
     {
-        if(!temcomida)
+        if(atualcomida==null)
         {
             //defini local que a comida sera criada
             int x = (int)Random.Range(BorderLeft.position.x, BorderRight.position.x);//cria um numero Random entre as duas bordas na Horizontal(x)
             int y = (int)Random.Range(BorderTop.position.y, BorderBot.position.y);//cria um numero Random entre as duas bordas na vertical(y)
             Vector2 spawnposition = new Vector2(x, y);
            atualcomida=Instantiate(food, spawnposition, Quaternion.identity);
-            temcomida = true;
         }
     }
     public void comida()
     {
-        if (atualcomida != null)
-        {
-            temcomida = false;
+        atualcomida = null;
             Spawn();
-        }
     }
     public void StartsPawnFood()
     {

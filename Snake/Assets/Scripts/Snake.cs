@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Snake : MonoBehaviour
 {
+    GameController gameController;
+    GameManager gameManager;
     spawnFood spawnfood;
+    static public float scoretual = 0f;
     //Comeu ou n
     bool eat = false;
     //Direção que a cobra vai se movimentar
@@ -12,13 +16,14 @@ public class Snake : MonoBehaviour
     //Tail Prefab
     public GameObject TailPrefab;
     //Tail
-    List<Transform> tail= new List<Transform>();
+    List<Transform> tail = new List<Transform>();
     void Start()
     {
+        gameController = GetComponent<GameController>();
+        gameManager = FindObjectOfType<GameManager>();
         spawnfood = FindAnyObjectByType<spawnFood>();
-        InvokeRepeating("Move",0.3f,0.3f); 
+        InvokeRepeating("Move", 0.3f, 0.3f);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -31,11 +36,11 @@ public class Snake : MonoBehaviour
         {
             dir = Vector2.left;
         }
-        else if(Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.UpArrow))
         {
-            dir =Vector2.up;
+            dir = Vector2.up;
         }
-        else if((Input.GetKey(KeyCode.DownArrow)))
+        else if ((Input.GetKey(KeyCode.DownArrow)))
         { dir = Vector2.down; }
     }
     void Move()
@@ -49,9 +54,10 @@ public class Snake : MonoBehaviour
             //cria a cauda
             GameObject g = (GameObject)Instantiate(TailPrefab, v, Quaternion.identity);
             //defino o elemento como inicio da cauda
-            tail.Insert(0,g.transform);  
+            tail.Insert(0, g.transform);
             eat = false;
-        }else if(tail.Count > 0)
+        }
+        else if (tail.Count > 0)
         {
             //muda a coordenada de tela do elemento
             tail[tail.Count - 1].position = v;
@@ -61,20 +67,20 @@ public class Snake : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
+     
         if (coll.name.StartsWith("food"))
         {
-            eat=true;
             Destroy(coll.gameObject);
-            if(eat)
-            {
-                spawnfood.comida();
-            }
+            eat = true;
+            gameManager.IncreaseScore(5);
+           Snake.scoretual = gameManager.score;
+            spawnfood.comida();
         }
         else
         {
-            //dead, fim de jogo
-            Debug.Log("DEAD!");
+            Destroy(gameObject);
+            SceneManager.LoadScene(2);
+        }
         }
     }
 
-}
