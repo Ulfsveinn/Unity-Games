@@ -7,8 +7,11 @@ public class GameController : MonoBehaviour
 {
     public GameObject headPrefab;
     private bool start;
-
-    // Update is called once per frame
+    public spawnFood spawnfood;
+    private void Start()
+    {
+        spawnfood = gameObject.GetComponent<spawnFood>();   
+    }
     void Update()
     {
        
@@ -17,6 +20,7 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         start = true;
+        spawnfood.StartsPawnFood();
         Instantiate(headPrefab, new Vector2(0f,0f), Quaternion.identity);
     }
 }

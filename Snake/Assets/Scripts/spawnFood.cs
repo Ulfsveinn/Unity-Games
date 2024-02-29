@@ -42,4 +42,8 @@ public class spawnFood : MonoBehaviour
             Spawn();
         }
     }
+    public void StartsPawnFood()
+    {
+        Spawn();
+    }
 }
