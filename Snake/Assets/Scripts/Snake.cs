@@ -17,12 +17,19 @@ public class Snake : MonoBehaviour
     public GameObject TailPrefab;
     //Tail
     List<Transform> tail = new List<Transform>();
+    private float speed;
+    private float startTime;
+    int comidascoletadas;
     void Start()
     {
         gameController = GetComponent<GameController>();
         gameManager = FindObjectOfType<GameManager>();
         spawnfood = FindAnyObjectByType<spawnFood>();
-        InvokeRepeating("Move", 0.3f, 0.3f);
+        speed = 0.3f;
+        startTime = Time.time;
+        StartCoroutine("NewMove");
+        Debug.Log(comidascoletadas);
+        Debug.Log(speed);
     }
     // Update is called once per frame
     void Update()
@@ -64,17 +71,28 @@ public class Snake : MonoBehaviour
             tail.Insert(0, tail[tail.Count - 1]);
             tail.RemoveAt(tail.Count - 1);
         }
+      
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
      
         if (coll.name.StartsWith("food"))
         {
+            comidascoletadas++;
             Destroy(coll.gameObject);
             eat = true;
             gameManager.IncreaseScore(5);
            Snake.scoretual = gameManager.score;
             spawnfood.comida();
+            if(comidascoletadas % 5==0)
+            {
+                speed -= 0.05f;
+                
+            }
+            if (speed < 0.1f)
+            {
+                speed = 0.1f;
+            }
         }
         else
         {
@@ -82,5 +100,13 @@ public class Snake : MonoBehaviour
             SceneManager.LoadScene(2);
         }
         }
+    private IEnumerator NewMove()
+    {
+        while(true)
+        {
+            Move();
+            yield return new WaitForSeconds(speed);
+        }
+    }
     }
 
