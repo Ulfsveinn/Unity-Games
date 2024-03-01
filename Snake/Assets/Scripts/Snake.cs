@@ -81,7 +81,7 @@ public class Snake : MonoBehaviour
             comidascoletadas++;
             Destroy(coll.gameObject);
             eat = true;
-            gameManager.IncreaseScore(5);
+            gameManager.IncreaseScore(1);
            Snake.scoretual = gameManager.score;
             spawnfood.comida();
             if(comidascoletadas % 5==0)
