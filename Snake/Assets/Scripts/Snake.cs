@@ -25,7 +25,7 @@ public class Snake : MonoBehaviour
         gameController = GetComponent<GameController>();
         gameManager = FindObjectOfType<GameManager>();
         spawnfood = FindAnyObjectByType<spawnFood>();
-        speed = 0.3f;
+        speed = 0.15f;
         startTime = Time.time;
         StartCoroutine("NewMove");
         Debug.Log(comidascoletadas);
@@ -78,21 +78,21 @@ public class Snake : MonoBehaviour
      
         if (coll.name.StartsWith("food"))
         {
-            comidascoletadas++;
+            //comidascoletadas++;
             Destroy(coll.gameObject);
             eat = true;
             gameManager.IncreaseScore(1);
            Snake.scoretual = gameManager.score;
             spawnfood.comida();
-            if(comidascoletadas % 5==0)
-            {
-                speed -= 0.05f;
+            //if(comidascoletadas % 5==0)
+            //{
+            //    speed -= 0.05f;
                 
-            }
-            if (speed < 0.1f)
-            {
-                speed = 0.1f;
-            }
+            //}
+            //if (speed < 0.1f)
+            //{
+            //    speed = 0.1f;
+            //}
         }
         else
         {
