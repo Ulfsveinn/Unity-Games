@@ -5,50 +5,70 @@ using UnityEngine.SceneManagement;
 
 public class Snake : MonoBehaviour
 {
-    GameController gameController;
     GameManager gameManager;
     spawnFood spawnfood;
     static public float scoretual = 0f;
     //Comeu ou n
     bool eat = false;
     //Direção que a cobra vai se movimentar
-    Vector2 dir = Vector2.right;
+    Vector2 dir = Vector2.zero;
     //Tail Prefab
     public GameObject TailPrefab;
     //Tail
-    List<Transform> tail = new List<Transform>();
+   public List<Transform> tail = new List<Transform>();
     private float speed;
-    private float startTime;
-    int comidascoletadas;
+   public int comidascoletadas;
+    bool direcaoHorizontal = false;
+    bool direcaoVertical = false;   
     void Start()
     {
-        gameController = GetComponent<GameController>();
         gameManager = FindObjectOfType<GameManager>();
         spawnfood = FindAnyObjectByType<spawnFood>();
         speed = 0.15f;
-        startTime = Time.time;
         StartCoroutine("NewMove");
-        Debug.Log(comidascoletadas);
-        Debug.Log(speed);
     }
     // Update is called once per frame
     void Update()
     {
         //Controles do jogo
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (!direcaoHorizontal)
         {
-            dir = Vector2.right;
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+               
+                direcaoVertical = false;
+                dir = Vector2.right;
+                direcaoHorizontal = true;
+            }
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        if (!direcaoHorizontal)
         {
-            dir = Vector2.left;
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                direcaoVertical = false;
+                dir = Vector2.left;
+                direcaoHorizontal = true;
+            }
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+       if(!direcaoVertical)
         {
-            dir = Vector2.up;
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                direcaoHorizontal = false;
+                dir = Vector2.up;
+                direcaoVertical = true;
+            }
         }
-        else if ((Input.GetKey(KeyCode.DownArrow)))
-        { dir = Vector2.down; }
+        if (!direcaoVertical)
+        {
+            if (Input.GetKey(KeyCode.DownArrow))
+            {
+                direcaoHorizontal = false;
+                dir = Vector2.down;
+                direcaoVertical = true;
+            }
+        }
+        Debug.Log(spawnfood.comidaParede);
     }
     void Move()
     {
@@ -71,28 +91,27 @@ public class Snake : MonoBehaviour
             tail.Insert(0, tail[tail.Count - 1]);
             tail.RemoveAt(tail.Count - 1);
         }
-      
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
      
         if (coll.name.StartsWith("food"))
         {
-            //comidascoletadas++;
+            comidascoletadas++;
             Destroy(coll.gameObject);
             eat = true;
             gameManager.IncreaseScore(1);
            Snake.scoretual = gameManager.score;
             spawnfood.comida();
-            //if(comidascoletadas % 5==0)
-            //{
-            //    speed -= 0.05f;
-                
-            //}
-            //if (speed < 0.1f)
-            //{
-            //    speed = 0.1f;
-            //}
+            if (comidascoletadas % 5 == 0)//a cada 5 comidas coletadas ele aumenta a velocidade
+            {
+                speed -= 0.2f;
+
+            }
+            if (speed < 0.1f)
+            {
+                speed = 0.1f;
+            }
         }
         else
         {
