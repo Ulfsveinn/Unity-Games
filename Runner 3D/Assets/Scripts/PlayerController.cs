@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space)&&isOnGround)// Se a tecla de espaço for pressionada e o jogador estiver no chão:
+        float space = Input.GetAxis("Jump");// Captura o valor do eixo de input para o botão de pulo
+        // Verifica se o botão de pulo foi pressionado, se o jogador está no chão e verifica se o jogo não acabou
+        if (space!=0&& isOnGround&&!GameController.gameOver)
         {
             playerRG.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);/*Aplica uma força que impulsiona o jogador para cima, com uma intensidade determinada pelo valor de jumpForce. 
                                                                        * Esta força é aplicada instantaneamente, usando Impulse como método de aplicação da força.*/
@@ -28,5 +30,6 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter(Collision collision)// Quando ocorre uma colisão:
     {
         isOnGround = true;//Define isOnGround como verdadeiro para indicar que o jogador está no chão.
+        
     }
 }
