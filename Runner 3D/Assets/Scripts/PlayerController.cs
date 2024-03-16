@@ -5,12 +5,14 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRG;//corpo rigido do player
+    private Animator PlayerAnima;//Controla a animação
     public float jumpForce = 6f;//força do pulo
     public float gravityModifier = 1f;//gravidade do jogo
     public bool isOnGround = true;//verifica se está no chão
     // Start is called before the first frame update
     void Start()
     {
+        PlayerAnima = GetComponent<Animator>();
         playerRG = GetComponent<Rigidbody>();// Obtém o componente Rigidbody do jogador (serve para controlar o comportamento físico do jogador)
         Physics.gravity *= gravityModifier;//multiplica o valor da gravidade em cena
     }
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
         // Verifica se o botão de pulo foi pressionado, se o jogador está no chão e verifica se o jogo não acabou
         if (space!=0&&isOnGround&&!GameController.gameOver)
         {
+            PlayerAnima.SetTrigger("Jump_trig");
             playerRG.AddForce(Vector3.up*jumpForce,ForceMode.Impulse);/*Aplica uma força que impulsiona o jogador para cima, com uma intensidade determinada pelo valor de jumpForce. 
                                                                        * Esta força é aplicada instantaneamente, usando Impulse como método de aplicação da força.*/
             isOnGround = false;//Define isOnGround como falso para indicar que o jogador não está mais no chão.
@@ -33,9 +36,10 @@ public class PlayerController : MonoBehaviour
             isOnGround = true;//Define isOnGround como verdadeiro para indicar que o jogador está no chão.
         } if (collision.gameObject.CompareTag("Obstacles")){
             GameController.gameOver = true;
+            PlayerAnima.SetBool("Death_b", true);
+            PlayerAnima.SetInteger("DeathType_int", 1);
+
         }
     }
-          
-       
     
 }
