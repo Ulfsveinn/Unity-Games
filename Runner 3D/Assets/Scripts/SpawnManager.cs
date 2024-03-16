@@ -19,7 +19,8 @@ public class SpawnManager : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
-        
+       // Debug.Log("Speed: " + GameController.speed);
+        Debug.Log("Pontos: " + GameController.score);
     }
     // Coroutine para spawnar obstáculos repetidamente
     IEnumerator SpawnObstacles(){
@@ -28,18 +29,17 @@ public class SpawnManager : MonoBehaviour
             if (!GameController.gameOver) {
                 // Chama a função para criar e spawnar um obstáculo
                 CreateObstacle();
-                // Aguarda 3 segundos antes de spawnar o próximo obstáculo
-                yield return new WaitForSeconds(3f);
             }
-           
-           
-           
+            // Aguarda o tempo determinado por GameController.timetoSpawn antes de spawnar o próximo obstáculo
+            yield return new WaitForSeconds(GameController.timetoSpawn);
         }
     }
     void CreateObstacle(){
         // Seleciona aleatoriamente um prefab de obstáculo do array
-        GameObject obstacle = obstaclesPrefab[Random.Range(0,obstaclesPrefab.Length-1)];
+        GameObject obstacle = obstaclesPrefab[Random.Range(0,obstaclesPrefab.Length)];
         // Instancia o obstáculo selecionado na posição de spawn com sua rotação padrão
         Instantiate(obstacle, spawnPosition, obstacle.transform.rotation);
     }
+   
+    
 }

@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5176487765195180458}
   m_Layer: 0
   m_Name: StoneWall
-  m_TagString: Untagged
+  m_TagString: Obstacles
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,8 +137,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.30878425, y: 0.90504575, z: 4.784976}
-  m_Center: {x: -0.013822675, y: 0.578931, z: -0.15188265}
+  m_Size: {x: 0.30878425, y: 1.0261861, z: 4.784976}
+  m_Center: {x: -0.013822675, y: 0.5183608, z: -0.15188265}
 --- !u!54 &5473681192091106182
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!114 &5176487765195180458
 MonoBehaviour:
