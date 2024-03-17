@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
         GameController.gameOver = false;
         // Invoca repetidamente o método ChangeDificult após 1 segundo, com um intervalo de 5 segundos entre as invocações
         InvokeRepeating("ChangeDificult", 1f, 5f);
+        // Invoca repetidamente o método ScoreTimer após 0.5 segundos, com um intervalo de 0.5 segundos entre as invocações
         InvokeRepeating("ScoreTimer", 0.5f,0.5f);
         }
     //Controlar a dificuldade do jogo
@@ -38,12 +39,14 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        scoreText.text = "Score: " + GameController.score;
+        scoreText.text = "Score: " + GameController.score;// Atualiza o texto da pontuação
     }
+    // Controla o temporizador de pontuação
     void ScoreTimer()
     {
+        // Incrementa a pontuação do jogo em 1 se o jogo não acabou
         if (!GameController.gameOver){
-            GameController.score += 1;// Incrementa a pontuação do jogo em 1
+            GameController.score += 1;
         }
     }
 }
