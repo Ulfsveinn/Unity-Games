@@ -14,8 +14,8 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score.text = "Score: " + GameController.score.ToString();
-        highScore.text = "Player: " + " HighScore: " + GameController.score;
+        score.text = "Player: " + GameController.PlayerName+ " Score: " + GameController.score.ToString();
+        highScore.text = "Player: " + GameController.nameHighScore + " HighScore: " + GameController.highScoreGC.ToString();
         Invoke("Menu", 5f);
     }
 

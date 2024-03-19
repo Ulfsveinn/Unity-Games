@@ -12,13 +12,13 @@ public class GameController : MonoBehaviour
     public static float timetoSpawn=3f;//Controlar o tempo de criar novos obstáculos
     public static float score=0f;//Pontuação do jogo
     public static bool gameOver = false;//Controla o estado do jogo
+    public static string PlayerName;
+    public static string nameHighScore;
+    public static float highScoreGC = 0;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI highScore;
-    GameOver gm;
     // Start is called before the first frame update
     void Start()
     {
-        gm = GetComponent<GameOver>();
         StartGame();
     }
     void StartGame()
@@ -46,7 +46,6 @@ public class GameController : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + GameController.score;// Atualiza o texto da pontuação
-        highScore.text = "HighScore: "+gm.highScore.ToString();
     }
     // Controla o temporizador de pontuação
     void ScoreTimer()
