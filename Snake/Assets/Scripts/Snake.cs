@@ -117,6 +117,7 @@ public class Snake : MonoBehaviour
         {
             Destroy(gameObject);
             SceneManager.LoadScene(2);
+
         }
         }
     private IEnumerator NewMove()

@@ -34,8 +34,4 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-    public void outgame()
-    {
-        Application.Quit();
-    }
-}
+   }

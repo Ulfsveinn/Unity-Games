@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -58,6 +59,11 @@ public class PlayerController : MonoBehaviour
             explosion.Play(); // Reproduz as partículas de explosão
             dirt.Stop(); // Para a reprodução das partículas de poeira
             PlayerAudio.PlayOneShot(CrashClip);
+            Invoke("GameOver", 2f);
         }
+    }
+    void GameOver()
+    {
+        SceneManager.LoadScene(2);
     }
 }

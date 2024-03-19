@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -12,9 +13,12 @@ public class GameController : MonoBehaviour
     public static float score=0f;//Pontuação do jogo
     public static bool gameOver = false;//Controla o estado do jogo
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highScore;
+    GameOver gm;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GetComponent<GameOver>();
         StartGame();
     }
     void StartGame()
@@ -32,14 +36,17 @@ public class GameController : MonoBehaviour
     //Controlar a dificuldade do jogo
     void ChangeDificult()
     {
+        if (!GameController.gameOver)
+        {
         GameController.speed += 1;// Aumenta a velocidade do jogo em 1 
         // Limita o tempo de spawn de novos obstáculos entre 1.5 e 5 segundos
         GameController.timetoSpawn = Mathf.Clamp(GameController.timetoSpawn=0.5f,1.5f,5f);
-       
+        }
     }
     void Update()
     {
         scoreText.text = "Score: " + GameController.score;// Atualiza o texto da pontuação
+        highScore.text = "HighScore: "+gm.highScore.ToString();
     }
     // Controla o temporizador de pontuação
     void ScoreTimer()
