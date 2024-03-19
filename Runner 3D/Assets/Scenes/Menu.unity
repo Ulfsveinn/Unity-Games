@@ -317,7 +317,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 606910ec401804eb09925f0d57909c04, type: 3}
@@ -1266,7 +1266,7 @@ GameObject:
   - component: {fileID: 1807293613}
   - component: {fileID: 1807293612}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: MsgProPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1305,7 +1305,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!222 &1807293613
 CanvasRenderer:
   m_ObjectHideFlags: 0

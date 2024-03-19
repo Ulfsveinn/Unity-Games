@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -14,8 +15,22 @@ public class GameController : MonoBehaviour
     public static bool gameOver = false;//Controla o estado do jogo
     public static string PlayerName;
     public static string nameHighScore;
-    public static float highScoreGC = 0;
+    public static float highScoreGC = 0f;
     public TextMeshProUGUI scoreText;
+
+    public static void loadData(){
+        GameController.highScoreGC = PlayerPrefs.GetFloat("HighScore",0f);
+        GameController.nameHighScore = PlayerPrefs.GetString("HighScoreName","Player");
+    }
+    public static void saveData(){
+        if (GameController.score > GameController.highScoreGC){
+            PlayerPrefs.SetFloat("HighScore", GameController.score);
+            PlayerPrefs.SetString("HighScoreName", GameController.PlayerName);
+            GameController.highScoreGC=GameController.score;
+            GameController.nameHighScore = GameController.PlayerName;
+            PlayerPrefs.Save();
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +38,7 @@ public class GameController : MonoBehaviour
     }
     void StartGame()
     {
-        
+        GameController.loadData();
         GameController.speed = 10f;
         GameController.timetoSpawn = 3f;
         GameController.score = 0f;

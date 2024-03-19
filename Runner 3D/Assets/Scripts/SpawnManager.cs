@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         // Debug.Log("Speed: " + GameController.speed);
-        Debug.Log("Pontos: " + GameController.score);
+        //Debug.Log("Pontos: " + GameController.score);
     }
     // Coroutine para spawnar obstáculos repetidamente
     IEnumerator SpawnObstacles()
